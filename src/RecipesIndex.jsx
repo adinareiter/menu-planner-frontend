@@ -11,7 +11,7 @@ export function RecipesIndex(props) {
           <p>{recipe.directions}</p>
           <p>Time: {recipe.time}</p>
           <img src={recipe.image} />
-          <button>View Recipe</button>
+          <button onClick={() => props.onShowRecipe(recipe)}>View Recipe</button>
         </div>
       ))}
     </div>

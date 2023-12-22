@@ -2,9 +2,13 @@ import axios from "axios";
 import { useState, useEffect } from "react";
 import { RecipesIndex } from "./RecipesIndex";
 import { RecipesNew } from "./RecipesNew";
+import { Modal } from "./Modal";
+import { RecipesShow } from "./RecipesShow";
 
 export function Content() {
   const [recipes, setRecipes] = useState([]);
+  const [isRecipesShowVisible, setIsRecipesShowVisible] = useState(false);
+  const [currentRecipe, setCurrentRecipe] = useState({});
 
   const handleIndexRecipes = () => {
     console.log("handleIndexRecipes");
@@ -21,12 +25,51 @@ export function Content() {
     successCallback;
   };
 
+  const handleShowRecipe = (recipe) => {
+    console.log("handleShowRecipe", recipe);
+    setIsRecipesShowVisible(true);
+    setCurrentRecipe(recipe);
+  };
+
+  const handleClose = () => {
+    console.log("handleClose");
+    setIsRecipesShowVisible(false);
+  };
+
+  const handleUpdateRecipe = (id, params, successCallback) => {
+    console.log("handleUpdateRecipe", params);
+    axios.patch(`http://localhost:3000/recipes/${id}.json`, params).then((response) => {
+      setRecipes(
+        recipes.map((recipe) => {
+          if (recipe.id === response.data.id) {
+            return response.data;
+          } else {
+            return recipe;
+          }
+        })
+      );
+      successCallback();
+      handleClose();
+    });
+  };
+
+  const handleDestroyRecipe = (recipe) => {
+    console.log("handleDestroyRecipe", recipe);
+    axios.delete(`http://localhost:3000/recipes/${recipe.id}.json`).then((response) => {
+      setRecipes(recipes.filter((r) => r.id !== recipe.id));
+      handleClose();
+    });
+  };
+
   useEffect(handleIndexRecipes, []);
 
   return (
     <div>
       <RecipesNew onCreateRecipe={handleCreateRecipe} />
-      <RecipesIndex recipes={recipes} />
+      <RecipesIndex recipes={recipes} onShowRecipe={handleShowRecipe} />
+      <Modal show={isRecipesShowVisible} onClose={handleClose}>
+        <RecipesShow recipe={currentRecipe} onUpdateRecipe={handleUpdateRecipe} onDestroyRecipe={handleDestroyRecipe} />
+      </Modal>
     </div>
   );
 }
