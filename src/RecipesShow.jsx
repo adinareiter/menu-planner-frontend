@@ -1,3 +1,6 @@
+import axios from "axios";
+import { useState, useEffect } from "react";
+
 export function RecipesShow(props) {
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -5,9 +8,23 @@ export function RecipesShow(props) {
     props.onUpdateRecipe(props.recipe.id, params, () => event.target.reset());
   };
 
+  const [eventList, setEventList] = useState(false);
+
+  const addMenuButton = () => {
+    setEventList(true);
+  };
+
   const handleClick = () => {
     props.onDestroyRecipe(props.recipe);
   };
+
+  // const [events, setEvents] = useState([]);
+  // const showEventsList = () => {
+  //   axios.get("http://localhost:3000/events.json").then((response) => {
+  //     console.log(response.data);
+  //     setEvents(response.data);
+  //   });
+  // };
 
   return (
     <div>
@@ -31,6 +48,21 @@ export function RecipesShow(props) {
         <button type="submit">Edit recipe</button>
       </form>
       <button onClick={handleClick}>Delete Recipe</button>
+      <button onClick={addMenuButton}>Add to Menu</button>
+      <div>
+        {eventList === true ? (
+          <>
+            <h1>Which event would you like to create a menu for?</h1>
+            {props.events.map((event) => (
+              <div key={event.id}>
+                <button>{event.title}</button>
+              </div>
+            ))}
+          </>
+        ) : (
+          <></>
+        )}
+      </div>
     </div>
   );
 }

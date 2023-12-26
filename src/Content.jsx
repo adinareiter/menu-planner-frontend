@@ -20,9 +20,10 @@ export function Content() {
 
   const handleCreateRecipe = (params, successCallback) => {
     console.log("handleCreateRecipe", params);
-    axios.post("http://localhost:3000/recipes.json", params);
-    setRecipes([...recipes, response.data]);
-    successCallback;
+    axios.post("http://localhost:3000/recipes.json", params).then((response) => {
+      setRecipes([...recipes, response.data]);
+      successCallback;
+    });
   };
 
   const handleShowRecipe = (recipe) => {
@@ -63,12 +64,31 @@ export function Content() {
 
   useEffect(handleIndexRecipes, []);
 
+  // EventsIndex function
+  const [events, setEvents] = useState([]);
+  const handleIndexEvents = () => {
+    console.log("handleIndexEvents");
+    axios.get("http://localhost:3000/events.json").then((response) => {
+      console.log(response.data);
+      setEvents(response.data);
+      // to use variable "events":
+      // console.log(events);
+    });
+  };
+
+  useEffect(handleIndexEvents, []);
+
   return (
     <div>
       <RecipesNew onCreateRecipe={handleCreateRecipe} />
       <RecipesIndex recipes={recipes} onShowRecipe={handleShowRecipe} />
       <Modal show={isRecipesShowVisible} onClose={handleClose}>
-        <RecipesShow recipe={currentRecipe} onUpdateRecipe={handleUpdateRecipe} onDestroyRecipe={handleDestroyRecipe} />
+        <RecipesShow
+          recipe={currentRecipe}
+          onUpdateRecipe={handleUpdateRecipe}
+          onDestroyRecipe={handleDestroyRecipe}
+          events={events}
+        />
       </Modal>
     </div>
   );

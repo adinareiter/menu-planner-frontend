@@ -2,7 +2,9 @@ export function RecipesNew(props) {
   const handleSubmit = (event) => {
     event.preventDefault();
     const params = new FormData(event.target);
-    props.onCreateRecipe(params, () => event.target.reset());
+    props.onCreateRecipe(params);
+    event.target.reset();
+    window.location.href = "/";
   };
   return (
     <div>
