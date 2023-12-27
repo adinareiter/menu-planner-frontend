@@ -10,11 +10,6 @@ export function RecipesIndex(props) {
           <div key={recipe.id} className="col">
             <div className="card">
               <h5 className="text-bg-dark p-2">{recipe.title}</h5>
-              {/* <h4>Ingredients</h4>
-            <li>{recipe.ingredients}</li>
-            <h4>Directions</h4>
-            <ol>{recipe.directions}</ol>
-          <p>Time: {recipe.time}</p> */}
               <img src={recipe.image} />
               <button onClick={() => props.onShowRecipe(recipe)} className="btn btn-dark">
                 View Recipe
