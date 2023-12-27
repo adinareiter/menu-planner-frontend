@@ -37,7 +37,7 @@ export function RecipesShow(props) {
 
   return (
     <div>
-      <h1>{props.recipe.title}</h1>
+      <h3>{props.recipe.title}</h3>
       <p>Ingredients: {props.recipe.ingredients}</p>
       <p>Directions: {props.recipe.directions}</p>
       <p>Time: {props.recipe.time}</p>

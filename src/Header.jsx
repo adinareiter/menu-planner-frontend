@@ -96,9 +96,6 @@ export function Header() {
           </div>
         </nav>
       </div>
-      {/* <nav>
-        <a href="#">Home</a> | <a href="#">Link</a>
-      </nav> */}
     </header>
   );
 }

@@ -2,8 +2,29 @@ html {
   scroll-behavior: smooth;
 }
 
+h1 {
+  padding-top: 100px;
+}
+
 img {
   width: 100%;
   height: 400px;
   object-fit: cover;
   }
+
+  #recipes-index {
+text-align: center;
+  }
+
+  #home {
+    background-color: black;
+    color: white;
+    padding: 100px;
+    text-align: center;
+    font-family: cursive;
+  }
+
+  /* not working */
+ #navbar-brand {
+font-family: cursive;
+ }

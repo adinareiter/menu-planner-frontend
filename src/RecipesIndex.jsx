@@ -9,19 +9,14 @@ export function RecipesIndex(props) {
         {props.recipes.map((recipe) => (
           <div key={recipe.id} className="col">
             <div className="card">
-              <h2>{recipe.title}</h2>
+              <h5 className="text-bg-dark p-2">{recipe.title}</h5>
               {/* <h4>Ingredients</h4>
             <li>{recipe.ingredients}</li>
             <h4>Directions</h4>
             <ol>{recipe.directions}</ol>
           <p>Time: {recipe.time}</p> */}
               <img src={recipe.image} />
-              <button
-                onClick={() => props.onShowRecipe(recipe)}
-                type="button"
-                data-bs-toggle="modal"
-                data-bs-target="#exampleModal"
-              >
+              <button onClick={() => props.onShowRecipe(recipe)} className="btn btn-dark">
                 View Recipe
               </button>
             </div>
