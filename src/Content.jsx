@@ -1,5 +1,7 @@
 import axios from "axios";
 import { useState, useEffect } from "react";
+import { Routes, Route } from "react-router-dom";
+import { Home } from "./Home";
 import { RecipesIndex } from "./RecipesIndex";
 import { RecipesNew } from "./RecipesNew";
 import { Modal } from "./Modal";
@@ -79,9 +81,14 @@ export function Content() {
   useEffect(handleIndexEvents, []);
 
   return (
-    <div>
-      <RecipesNew onCreateRecipe={handleCreateRecipe} />
-      <RecipesIndex recipes={recipes} onShowRecipe={handleShowRecipe} />
+    <div className="container">
+      <Routes>
+        <Route path="/home" element={<Home />} />
+        <Route path="/recipes" element={<RecipesIndex recipes={recipes} onShowRecipe={handleShowRecipe} />} />
+        <Route path="/recipes/new" element={<RecipesNew onCreateRecipe={handleCreateRecipe} />} />
+      </Routes>
+      {/* <RecipesNew onCreateRecipe={handleCreateRecipe} /> */}
+      {/* <RecipesIndex recipes={recipes} onShowRecipe={handleShowRecipe} /> */}
       <Modal show={isRecipesShowVisible} onClose={handleClose}>
         <RecipesShow
           recipe={currentRecipe}

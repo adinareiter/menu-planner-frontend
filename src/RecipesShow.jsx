@@ -8,23 +8,32 @@ export function RecipesShow(props) {
     props.onUpdateRecipe(props.recipe.id, params, () => event.target.reset());
   };
 
-  const [eventList, setEventList] = useState(false);
-
-  const addMenuButton = () => {
-    setEventList(true);
-  };
-
   const handleClick = () => {
     props.onDestroyRecipe(props.recipe);
   };
 
-  // const [events, setEvents] = useState([]);
-  // const showEventsList = () => {
-  //   axios.get("http://localhost:3000/events.json").then((response) => {
-  //     console.log(response.data);
-  //     setEvents(response.data);
-  //   });
-  // };
+  // event index
+  const [eventIndex, setEventIndex] = useState(false);
+
+  // connecting Add Menu button to event index
+  const addMenuButton = () => {
+    setEventIndex(true);
+  };
+
+  // Menu create action
+  const [menus, setMenus] = useState([]);
+  const handleCreateMenu = (params, successCallback) => {
+    console.log("handleCreateMenu", params);
+    axios
+      .post("http://localhost:3000/menus.json", params)
+      .then((response) => {
+        setMenus([...menus, response.data]);
+        successCallback();
+      })
+      .catch((error) => {
+        console.error("Error creating menu", error);
+      });
+  };
 
   return (
     <div>
@@ -50,12 +59,12 @@ export function RecipesShow(props) {
       <button onClick={handleClick}>Delete Recipe</button>
       <button onClick={addMenuButton}>Add to Menu</button>
       <div>
-        {eventList === true ? (
+        {eventIndex === true ? (
           <>
             <h1>Which event would you like to create a menu for?</h1>
             {props.events.map((event) => (
               <div key={event.id}>
-                <button>{event.title}</button>
+                <button onClick={handleCreateMenu}>{event.title}</button>
               </div>
             ))}
           </>
