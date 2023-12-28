@@ -5,6 +5,7 @@ import { Home } from "./Home";
 import { RecipesIndex } from "./RecipesIndex";
 import { RecipesNew } from "./RecipesNew";
 import { Modal } from "./Modal";
+// import { NewModal } from "./NewModal";
 import { RecipesShow } from "./RecipesShow";
 
 export function Content() {
@@ -97,6 +98,9 @@ export function Content() {
           events={events}
         />
       </Modal>
+      {/* <NewModal show={true}>
+        <h1>hi</h1>
+      </NewModal> */}
     </div>
   );
 }
