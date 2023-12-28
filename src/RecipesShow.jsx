@@ -1,7 +1,10 @@
+/* eslint-disable react/prop-types */
 import axios from "axios";
 import { useState, useEffect } from "react";
 
 export function RecipesShow(props) {
+  console.log("recipe_id", props.recipe.id);
+
   const handleSubmit = (event) => {
     event.preventDefault();
     const params = new FormData(event.target);
@@ -21,14 +24,23 @@ export function RecipesShow(props) {
   };
 
   // Menu create action
-  const [menus, setMenus] = useState([]);
-  const handleCreateMenu = (params, successCallback) => {
+  const [eventReal, setEventReal] = useState({});
+
+  const [menu, setMenu] = useState({});
+  const handleCreateMenu = (params) => {
+    console.log("event", eventReal);
     console.log("handleCreateMenu", params);
+    const data = {
+      recipe_id: props.recipe.id,
+      event_id: eventReal.id,
+    };
+    console.log(data);
     axios
-      .post("http://localhost:3000/menus.json", params)
+      .post("http://localhost:3000/menus.json", data)
       .then((response) => {
-        setMenus([...menus, response.data]);
-        successCallback();
+        // setMenu(response.data);
+        console.log(response.data);
+        console.log(menu);
       })
       .catch((error) => {
         console.error("Error creating menu", error);
@@ -64,9 +76,17 @@ export function RecipesShow(props) {
             <h1>Which event would you like to create a menu for?</h1>
             {props.events.map((event) => (
               <div key={event.id}>
-                <button onClick={handleCreateMenu}>{event.title}</button>
+                <label>{event.title}</label>
+                <input
+                  type="radio"
+                  value={event.id}
+                  name="selectedEvent"
+                  checked={eventReal.id === event.id}
+                  onChange={() => setEventReal(event)}
+                />
               </div>
             ))}
+            <button onClick={handleCreateMenu}>Create Menu</button>
           </>
         ) : (
           <></>
