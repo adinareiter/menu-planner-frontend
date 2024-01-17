@@ -4,7 +4,7 @@ export function RecipesNew(props) {
     const params = new FormData(event.target);
     props.onCreateRecipe(params);
     event.target.reset();
-    window.location.href = "/";
+    window.location.href = "/recipes";
   };
   return (
     <div>

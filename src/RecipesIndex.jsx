@@ -8,18 +8,17 @@ export function RecipesIndex(props) {
       row-cols-md-2 g-4"
       >
         <h1>Recipes</h1>
-        {/* <Link to="/recipes/new" id="add-link">
-          Add Recipe
-        </Link> */}
-        <button
-          id="add-button"
-          type="button"
-          className="btn btn-dark"
-          data-bs-toggle="modal"
-          data-bs-target="#exampleModal"
-        >
-          +
-        </button>
+        <Link to="/recipes/new">
+          <button
+            id="add-button"
+            type="button"
+            className="btn btn-dark"
+            data-bs-toggle="modal"
+            data-bs-target="#exampleModal"
+          >
+            +
+          </button>
+        </Link>
         {props.recipes.map((recipe) => (
           <div key={recipe.id}>
             <div className="card">

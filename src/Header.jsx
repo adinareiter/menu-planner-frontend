@@ -45,7 +45,10 @@ export function Header() {
                       Recipes
                     </Link>
                     <Link to="/recipes/new" className="nav-link active" aria-current="page">
-                      Create Recipe
+                      Create a Recipe
+                    </Link>
+                    <Link to="/menus" className="nav-link active" aria-current="page">
+                      Menus
                     </Link>
                   </li>
                   <li className="nav-item">
@@ -61,17 +64,17 @@ export function Header() {
                       data-bs-toggle="dropdown"
                       aria-expanded="false"
                     >
-                      Dropdown
+                      Events
                     </a>
                     <ul className="dropdown-menu dropdown-menu-dark">
                       <li>
                         <a className="dropdown-item" href="#">
-                          Action
+                          Breakfast
                         </a>
                       </li>
                       <li>
                         <a className="dropdown-item" href="#">
-                          Another action
+                          Lunch
                         </a>
                       </li>
                       <li>

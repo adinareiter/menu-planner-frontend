@@ -7,8 +7,12 @@ import { RecipesNew } from "./RecipesNew";
 import { Modal } from "./Modal";
 // import { NewModal } from "./NewModal";
 import { RecipesShow } from "./RecipesShow";
+import { MenusIndex } from "./MenusIndex";
+import { MenusShow } from "./MenusShow";
 
 export function Content() {
+  //Recipes:
+
   const [recipes, setRecipes] = useState([]);
   const [isRecipesShowVisible, setIsRecipesShowVisible] = useState(false);
   const [currentRecipe, setCurrentRecipe] = useState({});
@@ -17,7 +21,8 @@ export function Content() {
     console.log("handleIndexRecipes");
     axios.get("http://localhost:3000/recipes.json").then((response) => {
       console.log(response.data);
-      setRecipes(response.data);
+      let data = response.data;
+      setRecipes(data.reverse());
     });
   };
 
@@ -74,12 +79,47 @@ export function Content() {
     axios.get("http://localhost:3000/events.json").then((response) => {
       console.log(response.data);
       setEvents(response.data);
-      // to use variable "events":
-      // console.log(events);
     });
   };
 
   useEffect(handleIndexEvents, []);
+
+  // MenusIndex function
+
+  const handleIndexMenus = () => {
+    console.log("handleIndexMenus");
+    axios.get("http://localhost:3000/menus.json").then((response) => {
+      console.log(response.data);
+      setMenus(response.data);
+    });
+  };
+  useEffect(handleIndexMenus, []);
+
+  // MenusShow function
+  const [menus, setMenus] = useState([]);
+  // const [isMenusShowVisible, setIsMenusShowVisible] = useState(false);
+  const [currentMenu, setCurrentMenu] = useState({});
+
+  const handleShowMenu = (menu) => {
+    console.log("handleShowMenu", menu);
+    // setIsMenusShowVisible(true);
+    setCurrentMenu(menu);
+  };
+
+  //Menus Modal
+  // const [isMenusShowVisible, setIsMenusShowVisible] = useState(false);
+  // const [currentMenu, setCurrentMenu] = useState({});
+
+  // const handleShowMenu = (menu) => {
+  //   console.log("handleShowMenu", menu);
+  //   setIsMenusShowVisible(true);
+  //   setCurrentMenu(menu);
+  // };
+
+  // const handleMenuClose = () => {
+  //   console.log("handleClose");
+  //   setIsMenusShowVisible(false);
+  // };
 
   return (
     <div className="container">
@@ -87,9 +127,18 @@ export function Content() {
         <Route path="/home" element={<Home />} />
         <Route path="/recipes" element={<RecipesIndex recipes={recipes} onShowRecipe={handleShowRecipe} />} />
         <Route path="/recipes/new" element={<RecipesNew onCreateRecipe={handleCreateRecipe} />} />
+        <Route
+          path="/menus"
+          element={
+            <MenusIndex
+              menus={menus}
+              onShowMenu={handleShowMenu}
+              // onShowMenu={handleShowMenu}
+            />
+          }
+        />
+        <Route path="/events/:menuId" element={<MenusShow menu={currentMenu} />} />
       </Routes>
-      {/* <RecipesNew onCreateRecipe={handleCreateRecipe} /> */}
-      {/* <RecipesIndex recipes={recipes} onShowRecipe={handleShowRecipe} /> */}
       <Modal show={isRecipesShowVisible} onClose={handleClose}>
         <RecipesShow
           recipe={currentRecipe}
@@ -98,9 +147,9 @@ export function Content() {
           events={events}
         />
       </Modal>
-      {/* <NewModal show={true}>
-        <h1>hi</h1>
-      </NewModal> */}
+      {/* <Modal show={isMenusShowVisible} onClose={handleMenuClose}>
+        <MenusShow menu={currentMenu} />
+      </Modal> */}
     </div>
   );
 }

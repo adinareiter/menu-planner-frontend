@@ -38,13 +38,15 @@ export function RecipesShow(props) {
     axios
       .post("http://localhost:3000/menus.json", data)
       .then((response) => {
-        // setMenu(response.data);
         console.log(response.data);
         console.log(menu);
       })
       .catch((error) => {
         console.error("Error creating menu", error);
       });
+    // I want the radio to go blank and the page to reroute to /menus but it doesn't work
+    params.target.reset();
+    window.location.href = "/menus";
   };
 
   return (
@@ -76,7 +78,6 @@ export function RecipesShow(props) {
             <h1>Which event would you like to create a menu for?</h1>
             {props.events.map((event) => (
               <div key={event.id}>
-                <label>{event.title}</label>
                 <input
                   type="radio"
                   value={event.id}
@@ -84,6 +85,7 @@ export function RecipesShow(props) {
                   checked={eventReal.id === event.id}
                   onChange={() => setEventReal(event)}
                 />
+                <label>{event.title}</label>
               </div>
             ))}
             <button onClick={handleCreateMenu}>Create Menu</button>

@@ -44,6 +44,21 @@ padding-bottom: 50px;
     font-family: cursive;
   }
 
+  #menus-index {
+    margin-top: 100px;
+    border-radius: 5%;
+  }
+
+#menus-index-button {
+  background-color: black;
+  color: white;
+  border-radius: 5%;
+}
+
+#menus-index, img {
+  border-radius: 2%;
+}
+
   footer {
     background-color: black;
     color: white;
