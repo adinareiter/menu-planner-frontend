@@ -1,32 +1,37 @@
+/* eslint-disable react/prop-types */
+import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import axios from "axios";
 
-export function MenusShow(props) {
-  const { menuId } = useParams();
+export function MenusShow() {
+  const params = useParams();
+  const [menu, setMenu] = useState(null);
 
-  console.log("MenusShow menuId:", menuId);
-  console.log("MenusShow props:", props);
+  useEffect(() => {
+    //Fetch the menu data using params
+    axios
+      .get(`http://localhost:3000/menus/${params.menuId}.json`)
+      .then((response) => {
+        setMenu(response.data);
+      })
+      .catch((error) => {
+        console.error("Error fetching menu data:", error);
+        setMenu(null); // Set menu to null in case of an error
+      });
+  }, [params.menuId]); //Trigger the effect whenever menuId changes
 
-  if (!props.menu || !props.menu.event || !props.menu.recipe) {
-    console.log("No data available for menuId", menuId);
+  if (!menu || !menu.event || !menu.recipe) {
+    console.log("No data available for menuId", params.menuId);
     //Handle the  case where the data is not available
     return <div>No data available</div>;
   }
-  const { event, recipe } = props.menu;
+  const { event, recipe } = menu;
 
   return (
     <div>
       <h3>{event.title}</h3>
       <h3>Recipes:</h3>
       <p>{recipe.title}</p>
-      {/* <ul>
-        {recipes.map((recipe) => (
-          <li key={recipe.id}>{recipe.recipe.title}</li>
-        ))}
-      </ul> */}
     </div>
-    // <div>
-    //   <h1>{props.menu ? props.menu.title : "No title available"}</h1>
-    //   <h3>Welcome to my MenusShow page! Nothing on here yet!</h3>
-    // </div>
   );
 }

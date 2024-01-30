@@ -17,7 +17,7 @@ export function MenusIndex(props) {
             return (
               <div key={menu.id}>
                 <div className="card">
-                  <Link to={`/events/${menu.event.id}`} id="menus-index-button">
+                  <Link to={`/menus/${menu.id}`} id="menus-index-button">
                     {/* <button id="menus-index-button"> */}
                     <h3>{menu.event.title}</h3>
                     <img src={menu.event.image} alt={menu.event.title} />

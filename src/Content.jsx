@@ -85,7 +85,6 @@ export function Content() {
   useEffect(handleIndexEvents, []);
 
   // MenusIndex function
-
   const handleIndexMenus = () => {
     console.log("handleIndexMenus");
     axios.get("http://localhost:3000/menus.json").then((response) => {
@@ -94,6 +93,9 @@ export function Content() {
     });
   };
   useEffect(handleIndexMenus, []);
+  // useEffect(() => {
+  //   handleIndexMenus();
+  // }, []);
 
   // MenusShow function
   const [menus, setMenus] = useState([]);
@@ -137,7 +139,7 @@ export function Content() {
             />
           }
         />
-        <Route path="/events/:menuId" element={<MenusShow menu={currentMenu} />} />
+        <Route path="/menus/:menuId" element={<MenusShow menu={currentMenu} />} />
       </Routes>
       <Modal show={isRecipesShowVisible} onClose={handleClose}>
         <RecipesShow
