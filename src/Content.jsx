@@ -5,14 +5,12 @@ import { Home } from "./Home";
 import { RecipesIndex } from "./RecipesIndex";
 import { RecipesNew } from "./RecipesNew";
 import { Modal } from "./Modal";
-// import { NewModal } from "./NewModal";
 import { RecipesShow } from "./RecipesShow";
 import { MenusIndex } from "./MenusIndex";
 import { MenusShow } from "./MenusShow";
 
 export function Content() {
   //Recipes:
-
   const [recipes, setRecipes] = useState([]);
   const [isRecipesShowVisible, setIsRecipesShowVisible] = useState(false);
   const [currentRecipe, setCurrentRecipe] = useState({});
@@ -126,7 +124,7 @@ export function Content() {
   return (
     <div className="container">
       <Routes>
-        <Route path="/home" element={<Home />} />
+        <Route path="/" element={<Home />} />
         <Route path="/recipes" element={<RecipesIndex recipes={recipes} onShowRecipe={handleShowRecipe} />} />
         <Route path="/recipes/new" element={<RecipesNew onCreateRecipe={handleCreateRecipe} />} />
         <Route
@@ -139,7 +137,7 @@ export function Content() {
             />
           }
         />
-        <Route path="/menus/:menuId" element={<MenusShow menu={currentMenu} />} />
+        <Route path="/menus/:menuId" element={<MenusShow menu={currentMenu} onShowRecipe={handleShowRecipe} />} />
       </Routes>
       <Modal show={isRecipesShowVisible} onClose={handleClose}>
         <RecipesShow
