@@ -127,16 +127,7 @@ export function Content() {
         <Route path="/" element={<Home />} />
         <Route path="/recipes" element={<RecipesIndex recipes={recipes} onShowRecipe={handleShowRecipe} />} />
         <Route path="/recipes/new" element={<RecipesNew onCreateRecipe={handleCreateRecipe} />} />
-        <Route
-          path="/menus"
-          element={
-            <MenusIndex
-              menus={menus}
-              onShowMenu={handleShowMenu}
-              // onShowMenu={handleShowMenu}
-            />
-          }
-        />
+        <Route path="/menus" element={<MenusIndex eventMenus={events} onShowMenu={handleShowMenu} />} />
         <Route path="/menus/:menuId" element={<MenusShow menu={currentMenu} onShowRecipe={handleShowRecipe} />} />
       </Routes>
       <Modal show={isRecipesShowVisible} onClose={handleClose}>
