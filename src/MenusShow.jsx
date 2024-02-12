@@ -31,7 +31,7 @@ export function MenusShow(props) {
                 <h5 className="text-bg-dark p-2">{recipe.title}</h5>
                 <img src={recipe.image} />
                 <button onClick={() => props.onShowRecipe(recipe)} className="btn btn-dark">
-                  Open
+                  Quick View
                 </button>
               </div>
             </div>

@@ -3,7 +3,7 @@ import axios from "axios";
 import { useState, useEffect } from "react";
 
 export function RecipesShow(props) {
-  console.log("recipe_id", props.recipe.id);
+  console.log("recipe", props.recipe);
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -45,15 +45,29 @@ export function RecipesShow(props) {
         console.error("Error creating menu", error);
       });
     // I want the radio to go blank and the page to reroute to /menus but it doesn't work
-    params.target.reset();
-    window.location.href = "/menus";
+    // params.target.reset();
+    window.location.href = `/menus/${eventReal.id}`;
   };
 
   return (
     <div>
       <h3>{props.recipe.title}</h3>
-      <p>Ingredients: {props.recipe.ingredients}</p>
-      <p>Directions: {props.recipe.directions}</p>
+      <p>
+        Ingredients:{" "}
+        <ul>
+          {props.recipe.ingredients_list.map((ingredient) => (
+            <li key={ingredient}>{ingredient}</li>
+          ))}
+        </ul>
+      </p>
+      <p>
+        Directions:
+        <ol>
+          {props.recipe.directions_list.map((direction) => (
+            <li key={direction}>{direction}</li>
+          ))}
+        </ol>
+      </p>
       <p>Time: {props.recipe.time}</p>
       {/* <img src={props.recipe.image} /> */}
       <form onSubmit={handleSubmit}>
