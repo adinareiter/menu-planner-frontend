@@ -21,7 +21,12 @@ export function MenusShow(props) {
   }, [params.menuId]); // Trigger the effect whenever menuId changes
 
   return (
-    <div>
+    <div
+      id="menus-show"
+      className="row row-cols-1
+    row-cols-md-2 g-4"
+    >
+      {/* <div></div> */}
       <h1>{eventMenu.title}</h1>
       {eventMenu && eventMenu.recipes && eventMenu.recipes.length > 0 ? (
         <div>

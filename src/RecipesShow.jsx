@@ -52,22 +52,18 @@ export function RecipesShow(props) {
   return (
     <div>
       <h3>{props.recipe.title}</h3>
-      <p>
-        Ingredients:{" "}
-        <ul>
-          {props.recipe.ingredients_list.map((ingredient) => (
-            <li key={ingredient}>{ingredient}</li>
-          ))}
-        </ul>
-      </p>
-      <p>
-        Directions:
-        <ol>
-          {props.recipe.directions_list.map((direction) => (
-            <li key={direction}>{direction}</li>
-          ))}
-        </ol>
-      </p>
+      <h5>Ingredients: </h5>
+      <ul>
+        {props.recipe.ingredients_list.map((ingredient) => (
+          <li key={ingredient}>{ingredient}</li>
+        ))}
+      </ul>
+      <h5>Directions:</h5>
+      <ol>
+        {props.recipe.directions_list.map((direction) => (
+          <li key={direction}>{direction}</li>
+        ))}
+      </ol>
       <p>Time: {props.recipe.time}</p>
       {/* <img src={props.recipe.image} /> */}
       <form onSubmit={handleSubmit}>
@@ -89,7 +85,7 @@ export function RecipesShow(props) {
       <div>
         {eventIndex === true ? (
           <>
-            <h1>Which event would you like to create a menu for?</h1>
+            <h5>Choose an event:</h5>
             {props.events.map((event) => (
               <div key={event.id}>
                 <input

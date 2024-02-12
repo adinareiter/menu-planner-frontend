@@ -20,6 +20,7 @@ img {
   object-fit: cover;
   }
 
+/* centers add-button */
   #recipes-index {
 text-align: center;
 padding-bottom: 50px;
@@ -44,20 +45,21 @@ padding-bottom: 50px;
     font-family: cursive;
   }
 
-  #menus-index {
+  /* #menus-index {
     margin-top: 100px;
     border-radius: 5%;
-  }
+  } */
 
 #menus-index-button {
-  background-color: black;
+  text-align: center;
+  /* background-color: black;
   color: white;
-  border-radius: 5%;
+  border-radius: 5%; */
 }
 
-#menus-index, img {
+/* #menus-index, img {
   border-radius: 2%;
-}
+} */
 
   footer {
     background-color: black;
