@@ -3,11 +3,8 @@ import { Link } from "react-router-dom";
 export function RecipesIndex(props) {
   return (
     <div id="recipes-index">
-      <div
-        className="row row-cols-1
-      row-cols-md-2 g-4"
-      >
-        <h1>Recipes</h1>
+      <div className="d-flex justify-content-between align-items-center mb-3">
+        <h1 className="m-0">Recipes</h1>
         <Link to="/recipes/new">
           <button
             id="add-button"
@@ -19,6 +16,11 @@ export function RecipesIndex(props) {
             +
           </button>
         </Link>
+      </div>
+      <div
+        className="row row-cols-1
+          row-cols-md-2 g-4"
+      >
         {props.recipes.map((recipe) => (
           <div key={recipe.id}>
             <div className="card">

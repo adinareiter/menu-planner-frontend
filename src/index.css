@@ -20,9 +20,8 @@ img {
   object-fit: cover;
   }
 
-/* centers add-button */
   #recipes-index {
-text-align: center;
+    text-align: center;
 padding-bottom: 50px;
   }
 
@@ -30,7 +29,7 @@ padding-bottom: 50px;
     padding: 0.5px 15px;
     border-radius: 5px;
     font-size: xx-large;
-    /* margin-top: 5px; */
+    margin-top: 10px;
   }
 
   #home {
