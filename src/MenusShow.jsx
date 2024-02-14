@@ -21,15 +21,14 @@ export function MenusShow(props) {
   }, [params.menuId]); // Trigger the effect whenever menuId changes
 
   return (
-    <div
-      id="menus-show"
-      className="row row-cols-1
-    row-cols-md-2 g-4"
-    >
+    <div id="menus-show">
       {/* <div></div> */}
       <h1>{eventMenu.title}</h1>
       {eventMenu && eventMenu.recipes && eventMenu.recipes.length > 0 ? (
-        <div>
+        <div
+          className="row row-cols-1
+        row-cols-md-2 row-cols-lg-3 g-4"
+        >
           {eventMenu.recipes.map((recipe) => (
             <div key={recipe.id}>
               <div className="card">
