@@ -36,19 +36,32 @@ padding-bottom: 50px;
 
   #home {
     background-color: black;
-    color: white;
-    height: 75vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    font-family: cursive;
+    height: 100vh;
   }
 
-  /* #menus-index {
-    margin-top: 100px;
+  #welcome {
+    padding-top: 200px;
+    font-family: cursive;
+    display: flex;
+    justify-content: center;
+    color: white;
+    /* align-items: center; */
+    /* text-align: center; */
+  }
+
+  #links-container {
+    display: flex;
+    justify-content: space-between;
+    color: white;
+    padding: 50px;
+  }
+  
+  #recipes,
+  #menus {
+    background-color: rgb(34, 34, 34);
+    padding: 10%;
     border-radius: 5%;
-  } */
+  }
 
 #menus-index-button {
   text-align: center;
