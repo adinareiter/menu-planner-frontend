@@ -19,7 +19,7 @@ export function RecipesIndex(props) {
       </div>
       <div
         className="row row-cols-1
-          row-cols-md-2 g-4"
+          row-cols-md-2 row-cols-lg-3 g-4"
       >
         {props.recipes.map((recipe) => (
           <div key={recipe.id}>
