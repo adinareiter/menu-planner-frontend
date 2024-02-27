@@ -13,7 +13,8 @@
   position: fixed;
   background: white;
   width: 80%;
-  height: auto;
+  height: 500px;
+  overflow-y: scroll;
   top: 50%;
   left: 50%;
   transform: translate(-50%,-50%);
@@ -24,7 +25,7 @@
   font-size: 2em;
   background: none;
   border: none;
-  position: absolute;
+  position: fixed;
   top: 0em;
   right: 0.2em;
 }

@@ -44,8 +44,6 @@ export function RecipesShow(props) {
       .catch((error) => {
         console.error("Error creating menu", error);
       });
-    // I want the radio to go blank and the page to reroute to /menus but it doesn't work
-    // params.target.reset();
     window.location.href = `/menus/${eventReal.id}`;
   };
 

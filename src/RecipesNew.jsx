@@ -1,3 +1,5 @@
+import { NewModal } from "./NewModal";
+
 export function RecipesNew(props) {
   const handleSubmit = (event) => {
     event.preventDefault();

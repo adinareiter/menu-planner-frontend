@@ -1,6 +1,9 @@
+import { useState } from "react";
 import { Link } from "react-router-dom";
+import { NewModal } from "./NewModal";
 
 export function RecipesIndex(props) {
+  const [recipe, setRecipe] = useState({});
   return (
     <div id="recipes-index">
       <div className="d-flex justify-content-between align-items-center mb-3">
@@ -26,13 +29,23 @@ export function RecipesIndex(props) {
             <div className="card">
               <h5 className="text-bg-dark p-2">{recipe.title}</h5>
               <img src={recipe.image} />
-              <button onClick={() => props.onShowRecipe(recipe)} className="btn btn-dark">
+              {/* <button onClick={() => props.onShowRecipe(recipe)} className="btn btn-dark">
+                Quick View
+              </button> */}
+              <button
+                onClick={() => setRecipe(recipe)}
+                type="button"
+                className="btn btn-primary"
+                data-bs-toggle="modal"
+                data-bs-target="#staticBackdrop"
+              >
                 Quick View
               </button>
             </div>
           </div>
         ))}
       </div>
+      <NewModal recipe={recipe} events={props.eventMenus}></NewModal>
     </div>
   );
 }
