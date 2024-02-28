@@ -17,6 +17,8 @@ export function NewModal(props) {
     event.preventDefault();
     const params = new FormData(event.target);
     props.onUpdateRecipe(props.recipe.id, params, () => event.target.reset());
+    // want to refresh modal to update recipe automatically:
+    // window.location.href = "/recipes";
     setIsEditable();
   };
 
@@ -99,7 +101,7 @@ export function NewModal(props) {
                       Image address
                       <input defaultValue={props.recipe.image} name="image" type="text" placeholder="image" />
                     </div>
-                    <button type="submit">Edit recipe</button>
+                    <button type="submit">Save</button>
                   </form>
                 </div>
               ) : (
@@ -120,10 +122,12 @@ export function NewModal(props) {
                     ))}
                   </ol>
                   <p>Time: {props.recipe.time}</p>
-                  <div>
+                  <div
+                  // className="collapse" id="collapseExample"
+                  >
                     {eventIndex === true ? (
                       <>
-                        <h5>Choose an event:</h5>
+                        <h5>Add to an event:</h5>
                         {props.events.map((event) => (
                           <div key={event.id}>
                             <input
@@ -136,7 +140,9 @@ export function NewModal(props) {
                             <label>{event.title}</label>
                           </div>
                         ))}
-                        <button onClick={handleCreateMenu}>Create Menu</button>
+                        <button onClick={handleCreateMenu} className="btn btn-dark">
+                          Add Recipe
+                        </button>
                       </>
                     ) : (
                       <></>
@@ -148,15 +154,25 @@ export function NewModal(props) {
               <></>
             )}
             <div className="modal-footer">
-              <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">
+              {/* close button */}
+              {/* <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">
                 Close
-              </button>
-              <button onClick={addMenuButton} type="button" className="btn btn-primary">
+              </button> */}
+              <button
+                onClick={addMenuButton}
+                type="button"
+                // data-toggle="collapse"
+                // data-target="#collapseExample"
+                // aria-expanded="false"
+                // aria-controls="collapseExample"
+                className="btn btn-dark"
+              >
                 Add to a Menu
               </button>
-              <button onClick={handleClick} className="btn btn-danger">
+              {/* <button onClick={handleClick} className="btn btn-danger">
                 Delete
-              </button>
+              </button> */}
+              <i onClick={handleClick} className="bi bi-trash3-fill btn btn-danger"></i>
             </div>
           </div>
         </div>

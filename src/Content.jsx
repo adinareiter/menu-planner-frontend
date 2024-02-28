@@ -133,6 +133,7 @@ export function Content() {
               eventMenus={events}
               onUpdateRecipe={handleUpdateRecipe}
               onShowRecipe={handleShowRecipe}
+              onDestroyRecipe={handleDestroyRecipe}
             />
           }
         />

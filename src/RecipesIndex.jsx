@@ -35,7 +35,7 @@ export function RecipesIndex(props) {
               <button
                 onClick={() => setRecipe(recipe)}
                 type="button"
-                className="btn btn-primary"
+                className="btn btn-dark"
                 data-bs-toggle="modal"
                 data-bs-target="#staticBackdrop"
               >
@@ -45,7 +45,12 @@ export function RecipesIndex(props) {
           </div>
         ))}
       </div>
-      <NewModal recipe={recipe} events={props.eventMenus} onUpdateRecipe={props.onUpdateRecipe}></NewModal>
+      <NewModal
+        recipe={recipe}
+        events={props.eventMenus}
+        onUpdateRecipe={props.onUpdateRecipe}
+        onDestroyRecipe={props.onDestroyRecipe}
+      ></NewModal>
     </div>
   );
 }
