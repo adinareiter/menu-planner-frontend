@@ -45,7 +45,7 @@ export function RecipesIndex(props) {
           </div>
         ))}
       </div>
-      <NewModal recipe={recipe} events={props.eventMenus}></NewModal>
+      <NewModal recipe={recipe} events={props.eventMenus} onUpdateRecipe={props.onUpdateRecipe}></NewModal>
     </div>
   );
 }

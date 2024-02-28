@@ -127,7 +127,14 @@ export function Content() {
         <Route path="/" element={<Home />} />
         <Route
           path="/recipes"
-          element={<RecipesIndex recipes={recipes} eventMenus={events} onShowRecipe={handleShowRecipe} />}
+          element={
+            <RecipesIndex
+              recipes={recipes}
+              eventMenus={events}
+              onUpdateRecipe={handleUpdateRecipe}
+              onShowRecipe={handleShowRecipe}
+            />
+          }
         />
         <Route path="/recipes/new" element={<RecipesNew onCreateRecipe={handleCreateRecipe} />} />
         <Route path="/menus" element={<MenusIndex eventMenus={events} onShowMenu={handleShowMenu} />} />

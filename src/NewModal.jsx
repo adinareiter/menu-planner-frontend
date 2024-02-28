@@ -4,10 +4,20 @@ import axios from "axios";
 export function NewModal(props) {
   console.log("recipe", props);
 
+  //editable form is invisible
+  const [isEditable, setIsEditable] = useState(false);
+
+  //opens editable form
+  const handleEdit = () => {
+    setIsEditable(true);
+    console.log("test");
+  };
+
   const handleSubmit = (event) => {
     event.preventDefault();
     const params = new FormData(event.target);
     props.onUpdateRecipe(props.recipe.id, params, () => event.target.reset());
+    setIsEditable();
   };
 
   const handleClick = () => {
@@ -65,43 +75,75 @@ export function NewModal(props) {
               <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             {props.recipe && props.recipe.id ? (
-              <div className="modal-body">
-                <h5>Ingredients: </h5>
-                <ul>
-                  {props.recipe.ingredients_list.map((ingredient) => (
-                    <li key={ingredient}>{ingredient}</li>
-                  ))}
-                </ul>
-                <h5>Directions:</h5>
-                <ol>
-                  {props.recipe.directions_list.map((direction) => (
-                    <li key={direction}>{direction}</li>
-                  ))}
-                </ol>
-                <p>Time: {props.recipe.time}</p>
+              isEditable ? (
                 <div>
-                  {eventIndex === true ? (
-                    <>
-                      <h5>Choose an event:</h5>
-                      {props.events.map((event) => (
-                        <div key={event.id}>
-                          <input
-                            type="radio"
-                            value={event.id}
-                            name="selectedEvent"
-                            checked={eventReal.id === event.id}
-                            onChange={() => setEventReal(event)}
-                          />
-                          <label>{event.title}</label>
-                        </div>
-                      ))}
-                      <button onClick={handleCreateMenu}>Create Menu</button>
-                    </>
-                  ) : (
-                    <></>
-                  )}
+                  <form onSubmit={handleSubmit}>
+                    <div>
+                      Title: <input defaultValue={props.recipe.title} name="title" type="text" placeholder="title" />
+                      Ingredients:
+                      <input
+                        defaultValue={props.recipe.ingredients}
+                        name="ingredients"
+                        type="text"
+                        placeholder="ingredients"
+                      />
+                      Directions:
+                      <input
+                        defaultValue={props.recipe.directions}
+                        name="directions"
+                        type="text"
+                        placeholder="directions"
+                      />
+                      Time:
+                      <input defaultValue={props.recipe.time} name="time" type="text" placeholder="time" />
+                      Image address
+                      <input defaultValue={props.recipe.image} name="image" type="text" placeholder="image" />
+                    </div>
+                    <button type="submit">Edit recipe</button>
+                  </form>
                 </div>
-              </div>
+              ) : (
+                <div className="modal-body">
+                  <h5>
+                    Ingredients: <i onClick={handleEdit} className="bi bi-pencil-square pl-4"></i>
+                  </h5>
+
+                  <ul>
+                    {props.recipe.ingredients_list.map((ingredient) => (
+                      <li key={ingredient}>{ingredient}</li>
+                    ))}
+                  </ul>
+                  <h5>Directions:</h5>
+                  <ol>
+                    {props.recipe.directions_list.map((direction) => (
+                      <li key={direction}>{direction}</li>
+                    ))}
+                  </ol>
+                  <p>Time: {props.recipe.time}</p>
+                  <div>
+                    {eventIndex === true ? (
+                      <>
+                        <h5>Choose an event:</h5>
+                        {props.events.map((event) => (
+                          <div key={event.id}>
+                            <input
+                              type="radio"
+                              value={event.id}
+                              name="selectedEvent"
+                              checked={eventReal.id === event.id}
+                              onChange={() => setEventReal(event)}
+                            />
+                            <label>{event.title}</label>
+                          </div>
+                        ))}
+                        <button onClick={handleCreateMenu}>Create Menu</button>
+                      </>
+                    ) : (
+                      <></>
+                    )}
+                  </div>
+                </div>
+              )
             ) : (
               <></>
             )}
