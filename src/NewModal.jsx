@@ -30,8 +30,8 @@ export function NewModal(props) {
   const [eventIndex, setEventIndex] = useState(false);
 
   // connecting Add Menu button to event index
-  const addMenuButton = () => {
-    setEventIndex(true);
+  const toggleMenuButton = () => {
+    setEventIndex(!eventIndex);
   };
 
   // Menu create action
@@ -74,7 +74,13 @@ export function NewModal(props) {
               <h1 className="modal-title fs-5" id="staticBackdropLabel">
                 {props.recipe.title}
               </h1>
-              <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              <button
+                onClick={() => setEventIndex(false)}
+                type="button"
+                className="btn-close"
+                data-bs-dismiss="modal"
+                aria-label="Close"
+              ></button>
             </div>
             {props.recipe && props.recipe.id ? (
               isEditable ? (
@@ -125,9 +131,9 @@ export function NewModal(props) {
                   <div
                   // className="collapse" id="collapseExample"
                   >
+                    <h5 onClick={toggleMenuButton}>Add to an event:</h5>
                     {eventIndex === true ? (
                       <>
-                        <h5>Add to an event:</h5>
                         {props.events.map((event) => (
                           <div key={event.id}>
                             <input
@@ -159,7 +165,7 @@ export function NewModal(props) {
                 Close
               </button> */}
               <button
-                onClick={addMenuButton}
+                // onClick={addMenuButton}
                 type="button"
                 // data-toggle="collapse"
                 // data-target="#collapseExample"

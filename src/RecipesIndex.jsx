@@ -39,7 +39,7 @@ export function RecipesIndex(props) {
                 data-bs-toggle="modal"
                 data-bs-target="#staticBackdrop"
               >
-                Quick View
+                View
               </button>
             </div>
           </div>
