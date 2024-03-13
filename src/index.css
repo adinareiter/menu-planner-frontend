@@ -92,6 +92,10 @@ padding-left: 6px;
   margin-top: 20px;
 }
 
+#cancel-deletion {
+  margin: 10px;
+}
+
   footer {
     background-color: black;
     color: white;

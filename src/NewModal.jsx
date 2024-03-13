@@ -81,6 +81,7 @@ export function NewModal(props) {
                 onClick={() => {
                   setEventIndex(false);
                   setIsEditable(false);
+                  setConfirmDeletion(false);
                 }}
                 type="button"
                 className="btn-close"
@@ -113,6 +114,7 @@ export function NewModal(props) {
                       Image address
                       <input defaultValue={props.recipe.image} name="image" type="text" placeholder="image" />
                     </div>
+                    <button onClick={() => setIsEditable(false)}>Cancel</button>
                     <button type="submit">Save</button>
                   </form>
                 </div>
@@ -181,17 +183,19 @@ export function NewModal(props) {
               {/* <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">
                 Close
               </button> */}
-              {/* <button
-                onClick={toggleMenuButton}
-                type="button"
-                className="btn btn-dark"
-              >
-                Add to a Menu
-              </button> */}
               {confirmDeletion ? (
-                <button onClick={handleClick} className="btn btn-danger">
-                  Delete
-                </button>
+                <div>
+                  <button
+                    onClick={() => setConfirmDeletion(false)}
+                    className="btn btn-outline-primary"
+                    id="cancel-deletion"
+                  >
+                    Cancel
+                  </button>
+                  <button onClick={handleClick} className="btn btn-danger" id="delete">
+                    Delete
+                  </button>
+                </div>
               ) : (
                 <i onClick={() => setConfirmDeletion(true)} className="bi bi-trash3-fill btn btn-danger"></i>
               )}
