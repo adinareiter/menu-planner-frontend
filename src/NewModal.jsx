@@ -120,8 +120,9 @@ export function NewModal(props) {
                 <div> Are you sure you want to delete this recipe? </div>
               ) : (
                 <div className="modal-body">
+                  {/* <div className="modal-dialog-scrollable"> */}
                   <h5>
-                    Ingredients: <i onClick={handleEdit} className="bi bi-pencil-square pl-4"></i>
+                    Ingredients: <i onClick={handleEdit} className="bi bi-pencil-square pl-4" type="button"></i>
                   </h5>
 
                   <ul>
@@ -136,26 +137,33 @@ export function NewModal(props) {
                     ))}
                   </ol>
                   <p>Time: {props.recipe.time}</p>
-                  <div
-                  // className="collapse" id="collapseExample"
-                  >
-                    <h5 onClick={toggleMenuButton}>Add to an event:</h5>
+                  <div>
+                    <h5
+                      onClick={toggleMenuButton}
+                      // type="button"
+                      // className="btn btn-outline-dark"
+                    >
+                      Add to an event
+                      <i id="arrow" type="button" className="bi bi-caret-down-fill btn btn-outline-dark"></i>
+                    </h5>
                     {eventIndex === true ? (
                       <>
                         {props.events.map((event) => (
-                          <div key={event.id}>
+                          <div className="form-check" key={event.id}>
                             <input
+                              className="form-check-input"
                               type="radio"
                               value={event.id}
-                              name="selectedEvent"
+                              name="flexRadioDefault"
+                              id="flexRadioDefault1"
                               checked={eventReal.id === event.id}
                               onChange={() => setEventReal(event)}
                             />
-                            <label>{event.title}</label>
+                            <label className="form-check-label">{event.title}</label>
                           </div>
                         ))}
-                        <button onClick={handleCreateMenu} className="btn btn-dark">
-                          Add Recipe
+                        <button onClick={handleCreateMenu} className="btn btn-outline-dark" id="event-save">
+                          Save
                         </button>
                       </>
                     ) : (
@@ -163,6 +171,7 @@ export function NewModal(props) {
                     )}
                   </div>
                 </div>
+                // </div>
               )
             ) : (
               <></>
@@ -172,17 +181,13 @@ export function NewModal(props) {
               {/* <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">
                 Close
               </button> */}
-              <button
-                // onClick={addMenuButton}
+              {/* <button
+                onClick={toggleMenuButton}
                 type="button"
-                // data-toggle="collapse"
-                // data-target="#collapseExample"
-                // aria-expanded="false"
-                // aria-controls="collapseExample"
                 className="btn btn-dark"
               >
                 Add to a Menu
-              </button>
+              </button> */}
               {confirmDeletion ? (
                 <button onClick={handleClick} className="btn btn-danger">
                   Delete
