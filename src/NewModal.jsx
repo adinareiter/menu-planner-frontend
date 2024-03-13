@@ -24,6 +24,7 @@ export function NewModal(props) {
 
   const handleClick = () => {
     props.onDestroyRecipe(props.recipe);
+    window.location.href = `/recipes`;
   };
 
   // event index
@@ -57,6 +58,8 @@ export function NewModal(props) {
       });
     window.location.href = `/menus/${eventReal.id}`;
   };
+
+  const [confirmDeletion, setConfirmDeletion] = useState(false);
   return (
     <div>
       <div
@@ -75,7 +78,10 @@ export function NewModal(props) {
                 {props.recipe.title}
               </h1>
               <button
-                onClick={() => setEventIndex(false)}
+                onClick={() => {
+                  setEventIndex(false);
+                  setIsEditable(false);
+                }}
                 type="button"
                 className="btn-close"
                 data-bs-dismiss="modal"
@@ -110,6 +116,8 @@ export function NewModal(props) {
                     <button type="submit">Save</button>
                   </form>
                 </div>
+              ) : confirmDeletion ? (
+                <div> Are you sure you want to delete this recipe? </div>
               ) : (
                 <div className="modal-body">
                   <h5>
@@ -175,10 +183,13 @@ export function NewModal(props) {
               >
                 Add to a Menu
               </button>
-              {/* <button onClick={handleClick} className="btn btn-danger">
-                Delete
-              </button> */}
-              <i onClick={handleClick} className="bi bi-trash3-fill btn btn-danger"></i>
+              {confirmDeletion ? (
+                <button onClick={handleClick} className="btn btn-danger">
+                  Delete
+                </button>
+              ) : (
+                <i onClick={() => setConfirmDeletion(true)} className="bi bi-trash3-fill btn btn-danger"></i>
+              )}
             </div>
           </div>
         </div>

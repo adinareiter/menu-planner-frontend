@@ -19,8 +19,8 @@ export function Content() {
     console.log("handleIndexRecipes");
     axios.get("http://localhost:3000/recipes.json").then((response) => {
       console.log(response.data);
-      let data = response.data;
-      setRecipes(data.reverse());
+      let data = response.data.sort((a, b) => a.created_at - b.created_at);
+      setRecipes(data);
     });
   };
 
