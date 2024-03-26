@@ -151,17 +151,25 @@ export function NewModal(props) {
                     {eventIndex === true ? (
                       <>
                         {props.events.map((event) => (
-                          <div className="form-check" key={event.id}>
+                          <div
+                            // className="form-check"
+                            key={event.id}
+                          >
                             <input
-                              className="form-check-input"
+                              // className="form-check-input"
                               type="radio"
                               value={event.id}
-                              name="flexRadioDefault"
-                              id="flexRadioDefault1"
+                              name="selectedEvent"
+                              // name="flexRadioDefault"
+                              // id="flexRadioDefault1"
                               checked={eventReal.id === event.id}
                               onChange={() => setEventReal(event)}
                             />
-                            <label className="form-check-label">{event.title}</label>
+                            <label
+                            // className="form-check-label"
+                            >
+                              {event.title}
+                            </label>
                           </div>
                         ))}
                         <button onClick={handleCreateMenu} className="btn btn-outline-dark" id="event-save">
