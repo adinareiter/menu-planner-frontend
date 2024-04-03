@@ -1,9 +1,9 @@
-import { useState } from "react";
+// import { useState } from "react";
 import { Link } from "react-router-dom";
-import { NewModal } from "./NewModal";
+// import { NewModal } from "./NewModal";
 
 export function RecipesIndex(props) {
-  const [recipe, setRecipe] = useState({});
+  // const [recipe, setRecipe] = useState({});
   return (
     <div id="recipes-index">
       <div className="d-flex justify-content-between align-items-center mb-3">
@@ -35,7 +35,7 @@ export function RecipesIndex(props) {
                 Quick View
               </button> */}
               <button
-                onClick={() => setRecipe(recipe)}
+                onClick={() => props.setCurrentRecipe(recipe)}
                 type="button"
                 className="btn btn-dark"
                 data-bs-toggle="modal"
@@ -47,12 +47,12 @@ export function RecipesIndex(props) {
           </div>
         ))}
       </div>
-      <NewModal
+      {/* <NewModal
         recipe={recipe}
         events={props.eventMenus}
         onUpdateRecipe={props.onUpdateRecipe}
         onDestroyRecipe={props.onDestroyRecipe}
-      ></NewModal>
+      ></NewModal> */}
     </div>
   );
 }

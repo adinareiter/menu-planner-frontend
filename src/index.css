@@ -84,6 +84,16 @@ padding-bottom: 50px;
   text-align: left;
 }
 
+/* Style for form inputs */
+.input-style {
+  /* border: none;
+  background-color: transparent;
+  border-bottom: 1px solid #ced4da;
+  margin-bottom: 1rem;
+  width: 75%; */
+}
+
+
 #arrow {
   margin: 10px;
 padding-top: 2px;

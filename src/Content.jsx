@@ -8,6 +8,7 @@ import { Modal } from "./Modal";
 import { RecipesShow } from "./RecipesShow";
 import { MenusIndex } from "./MenusIndex";
 import { MenusShow } from "./MenusShow";
+import { NewModal } from "./NewModal";
 
 export function Content() {
   //Recipes:
@@ -19,8 +20,8 @@ export function Content() {
     console.log("handleIndexRecipes");
     axios.get("http://localhost:3000/recipes.json").then((response) => {
       console.log(response.data);
-      let data = response.data.sort((a, b) => a.created_at - b.created_at);
-      setRecipes(data);
+      // let data = response.data.sort((a, b) => a.created_at - b.created_at);
+      setRecipes(response.data);
     });
   };
 
@@ -46,6 +47,7 @@ export function Content() {
   const handleUpdateRecipe = (id, params, successCallback) => {
     console.log("handleUpdateRecipe", params);
     axios.patch(`http://localhost:3000/recipes/${id}.json`, params).then((response) => {
+      setCurrentRecipe(response.data);
       setRecipes(
         recipes.map((recipe) => {
           if (recipe.id === response.data.id) {
@@ -134,6 +136,7 @@ export function Content() {
               onUpdateRecipe={handleUpdateRecipe}
               onShowRecipe={handleShowRecipe}
               onDestroyRecipe={handleDestroyRecipe}
+              setCurrentRecipe={setCurrentRecipe}
             />
           }
         />
@@ -152,6 +155,12 @@ export function Content() {
       {/* <Modal show={isMenusShowVisible} onClose={handleMenuClose}>
         <MenusShow menu={currentMenu} />
       </Modal> */}
+      <NewModal
+        recipe={currentRecipe}
+        events={events}
+        onUpdateRecipe={handleUpdateRecipe}
+        onDestroyRecipe={handleDestroyRecipe}
+      ></NewModal>
     </div>
   );
 }

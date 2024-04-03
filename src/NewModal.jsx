@@ -40,6 +40,7 @@ export function NewModal(props) {
 
   const [menu, setMenu] = useState({});
   const handleCreateMenu = (params) => {
+    event.preventDefault;
     console.log("event", eventReal);
     console.log("handleCreateMenu", params);
     const data = {
@@ -94,13 +95,21 @@ export function NewModal(props) {
                 <div>
                   <form onSubmit={handleSubmit}>
                     <div>
-                      Title: <input defaultValue={props.recipe.title} name="title" type="text" placeholder="title" />
+                      Title:{" "}
+                      <input
+                        defaultValue={props.recipe.title}
+                        name="title"
+                        type="text"
+                        placeholder="title"
+                        className="input-style"
+                      />
                       Ingredients:
                       <input
                         defaultValue={props.recipe.ingredients}
                         name="ingredients"
                         type="text"
                         placeholder="ingredients"
+                        className="input-style"
                       />
                       Directions:
                       <input
@@ -108,11 +117,18 @@ export function NewModal(props) {
                         name="directions"
                         type="text"
                         placeholder="directions"
+                        className="input-style"
                       />
                       Time:
                       <input defaultValue={props.recipe.time} name="time" type="text" placeholder="time" />
                       Image address
-                      <input defaultValue={props.recipe.image} name="image" type="text" placeholder="image" />
+                      <input
+                        defaultValue={props.recipe.image}
+                        name="image"
+                        type="text"
+                        placeholder="image"
+                        className="input-style"
+                      />
                     </div>
                     <button onClick={() => setIsEditable(false)}>Cancel</button>
                     <button type="submit">Save</button>
@@ -151,25 +167,18 @@ export function NewModal(props) {
                     {eventIndex === true ? (
                       <>
                         {props.events.map((event) => (
-                          <div
-                            // className="form-check"
-                            key={event.id}
-                          >
+                          <div className="form-check" key={event.id}>
                             <input
-                              // className="form-check-input"
+                              className="form-check-input"
                               type="radio"
                               value={event.id}
                               name="selectedEvent"
-                              // name="flexRadioDefault"
-                              // id="flexRadioDefault1"
+                              name="flexRadioDefault"
+                              id="flexRadioDefault1"
                               checked={eventReal.id === event.id}
                               onChange={() => setEventReal(event)}
                             />
-                            <label
-                            // className="form-check-label"
-                            >
-                              {event.title}
-                            </label>
+                            <label className="form-check-label">{event.title}</label>
                           </div>
                         ))}
                         <button onClick={handleCreateMenu} className="btn btn-outline-dark" id="event-save">
