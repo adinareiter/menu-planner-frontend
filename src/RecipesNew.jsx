@@ -25,31 +25,31 @@ export function RecipesNew(props) {
       </div>
       <form onSubmit={handleSubmit}>
         <div className="form-row">
-          <div className="col-md-4 mb-4">
+          <div className="col-md-11 mb-4">
             <label className="col-md-4 mb-2">Title</label>
             <input name="title" type="text" placeholder="Title" className="form-control" />
           </div>
         </div>
         <div className="form-row">
-          <div className="col-md-4 mb-4">
+          <div className="col-md-11 mb-4">
             <label className="col-md-4 mb-2">Ingredients</label>
             <input name="ingredients" type="text" placeholder="Ingredients" className="form-control" />
           </div>
         </div>
         <div className="form-row">
-          <div className="col-md-4 mb-4">
+          <div className="col-md-11 mb-4">
             <label className="col-md-4 mb-2">Directions</label>
             <input name="directions" type="text" placeholder="Directions" className="form-control" />
           </div>
         </div>
         <div className="form-row">
-          <div className="col-md-4 mb-4">
+          <div className="col-md-11 mb-4">
             <label className="col-md-4 mb-2">Time</label>
             <input name="time" type="text" placeholder="Time" className="form-control" />
           </div>
         </div>
         <div className="form-row">
-          <div className="col-md-4 mb-5">
+          <div className="col-md-11 mb-5">
             <label className="col-md-4 mb-2">Image</label>
             <input name="image" type="text" placeholder="Image" className="form-control" />
           </div>
