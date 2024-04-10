@@ -119,8 +119,8 @@ export function NewModal(props) {
                         placeholder="directions"
                         className="input-style"
                       />
-                      Time:
-                      <input defaultValue={props.recipe.time} name="time" type="text" placeholder="time" />
+                      Minutes:
+                      <input defaultValue={props.recipe.time} name="time" type="text" placeholder="minutes" />
                       Image address
                       <input
                         defaultValue={props.recipe.image}
@@ -154,7 +154,7 @@ export function NewModal(props) {
                       <li key={direction}>{direction}</li>
                     ))}
                   </ol>
-                  <p>Time: {props.recipe.time}</p>
+                  <p>Time: {props.recipe.formatted_time}</p>
                   <div>
                     <h5
                       onClick={toggleMenuButton}

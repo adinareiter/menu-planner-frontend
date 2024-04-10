@@ -44,8 +44,8 @@ export function RecipesNew(props) {
         </div>
         <div className="form-row">
           <div className="col-md-11 mb-4">
-            <label className="col-md-4 mb-2">Time</label>
-            <input name="time" type="text" placeholder="Time" className="form-control" />
+            <label className="col-md-4 mb-2">Minutes</label>
+            <input name="time" type="text" placeholder="Minutes" className="form-control" />
           </div>
         </div>
         <div className="form-row">

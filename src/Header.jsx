@@ -44,8 +44,8 @@ export function Header() {
                     <Link to="/recipes" className="nav-link active" aria-current="page">
                       Recipes
                     </Link>
-                    <Link to="/recipes/new" className="nav-link active" aria-current="page">
-                      Create a Recipe
+                    <Link to="/login" className="nav-link active" aria-current="page">
+                      Login
                     </Link>
                     <Link to="/menus" className="nav-link active" aria-current="page">
                       Menus

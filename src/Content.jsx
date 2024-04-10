@@ -9,6 +9,9 @@ import { RecipesShow } from "./RecipesShow";
 import { MenusIndex } from "./MenusIndex";
 import { MenusShow } from "./MenusShow";
 import { NewModal } from "./NewModal";
+import { Signup } from "./Signup";
+import { Login } from "./Login";
+import { Logout } from "./Logout";
 
 export function Content() {
   //Recipes:
@@ -128,6 +131,9 @@ export function Content() {
     <div className="container">
       <Routes>
         <Route path="/" element={<Home />} />
+        <Route path="/signup" element={<Signup />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/logout" element={<Logout />} />
         <Route
           path="/recipes"
           element={
