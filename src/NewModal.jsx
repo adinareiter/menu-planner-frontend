@@ -76,7 +76,8 @@ export function NewModal(props) {
           <div className="modal-content">
             <div className="modal-header">
               <h1 className="modal-title fs-5" id="staticBackdropLabel">
-                {props.recipe.title}
+                {props.recipe.title}{" "}
+                <i onClick={handleEdit} className="bi bi-pencil-square pl-4" id="edit-icon" type="button"></i>
               </h1>
               <button
                 onClick={() => {
@@ -139,9 +140,7 @@ export function NewModal(props) {
               ) : (
                 <div className="modal-body">
                   {/* <div className="modal-dialog-scrollable"> */}
-                  <h5>
-                    Ingredients: <i onClick={handleEdit} className="bi bi-pencil-square pl-4" type="button"></i>
-                  </h5>
+                  <h5>Ingredients:</h5>
 
                   <ul>
                     {props.recipe.ingredients_list.map((ingredient) => (
