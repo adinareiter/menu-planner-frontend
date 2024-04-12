@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from "react";
 import Typewriter from "./Typewriter";
 import { Link } from "react-router-dom";
+// import { Login } from "./Login";
 
 export function Home() {
+  const jwt = localStorage.getItem("jwt");
   const [complete, setComplete] = useState(false);
 
   const handleComplete = () => {
@@ -28,18 +30,28 @@ export function Home() {
           <Typewriter text="   Welcome to my Menu Planner" delay={100} onComplete={handleComplete} />
         </h1>
       </div>
-      {complete && (
-        <div id="links-container">
-          <h5 id="recipes">
-            <Link to="/recipes" className="nav-link active" aria-current="page">
-              Recipes
-            </Link>
-          </h5>
-          <h5 id="menus">
-            <Link to="/menus" className="nav-link active" aria-current="page">
-              Menus
-            </Link>
-          </h5>
+      {jwt ? (
+        <div>
+          {complete && (
+            <div id="links-container">
+              <h5 id="recipes">
+                <Link to="/recipes" className="nav-link active" aria-current="page">
+                  Recipes
+                </Link>
+              </h5>
+              <h5 id="menus">
+                <Link to="/menus" className="nav-link active" aria-current="page">
+                  Menus
+                </Link>
+              </h5>
+            </div>
+          )}
+        </div>
+      ) : (
+        <div id="login-container">
+          <Link to="/login" className="nav-link active" aria-current="page" id="home-login">
+            Login/Sign Up <i className="bi bi-arrow-right-circle"></i>
+          </Link>
         </div>
       )}
     </div>

@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import { Logout } from "./Logout";
 
 export function Header() {
   return (
@@ -6,8 +7,15 @@ export function Header() {
       <div>
         <nav className="navbar navbar-dark bg-dark fixed-top">
           <div className="container-fluid">
-            <a className="navbar-brand" href="#">
-              Menu Planner
+            <a className="navbar-brand">
+              <Link to="/" className="nav-link active" aria-current="page">
+                Menu Planner
+              </Link>
+              <div className="account-link">
+                <Link to="/login" className="nav-link active" aria-current="page">
+                  <i id="account-icon" className="bi bi-person-circle"></i>
+                </Link>
+              </div>
             </a>
             <button
               className="navbar-toggler"
@@ -44,16 +52,17 @@ export function Header() {
                     <Link to="/recipes" className="nav-link active" aria-current="page">
                       Recipes
                     </Link>
-                    <Link to="/login" className="nav-link active" aria-current="page">
-                      Login
-                    </Link>
                     <Link to="/menus" className="nav-link active" aria-current="page">
                       Menus
                     </Link>
+                    <Link to="/login" className="nav-link active" aria-current="page">
+                      Login
+                    </Link>
+                    <Logout>Logout</Logout>
                   </li>
                   <li className="nav-item">
-                    <a className="nav-link" href="#">
-                      Link
+                    <a className="nav-link" href="/logout">
+                      Logout
                     </a>
                   </li>
                   <li className="nav-item dropdown">

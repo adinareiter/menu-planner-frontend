@@ -6,6 +6,15 @@ header {
   margin-top: 100px;
 }
 
+.navbar-brand {
+  display: flex;
+  /* align-items: center; */
+}
+
+.account-link {
+  margin-left: 20px;
+}
+
 header, a {
   /* font-family: fantasy; */
 }
@@ -27,6 +36,19 @@ h1 {
   color: white;
   /* align-items: center; */
   /* text-align: center; */
+}
+
+#login-container {
+  justify-content: space-between;
+  color: white;
+  padding: 20px;
+}
+
+#home-login {
+  color: white;
+  text-align: center;
+  margin-top: 20%;
+  background-color: rgb(34, 34, 34);
 }
 
 #links-container {
