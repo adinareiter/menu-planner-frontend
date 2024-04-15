@@ -48,7 +48,7 @@ export function Home() {
           )}
         </div>
       ) : (
-        <div id="login-container">
+        <div id="home-login-container">
           <Link to="/login" className="nav-link active" aria-current="page" id="home-login">
             Login/Sign Up <i className="bi bi-arrow-right-circle"></i>
           </Link>

@@ -9,6 +9,7 @@ export function Logout() {
   };
 
   return (
+    // {props.user}
     <a href="#" onClick={handleClick}>
       Logout
     </a>
