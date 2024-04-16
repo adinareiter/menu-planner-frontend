@@ -3,7 +3,6 @@ import { Link } from "react-router-dom";
 // import { NewModal } from "./NewModal";
 
 export function RecipesIndex(props) {
-  // const [recipe, setRecipe] = useState({});
   return (
     <div id="recipes-index">
       <div className="d-flex justify-content-between align-items-center mb-3">

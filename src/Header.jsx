@@ -12,7 +12,7 @@ export function Header() {
                 Menu Planner
               </Link>
               <div className="account-link">
-                <Link to="/login" className="nav-link active" aria-current="page">
+                <Link to="/account" className="nav-link active" aria-current="page">
                   <i id="account-icon" className="bi bi-person-circle"></i>
                 </Link>
               </div>
@@ -55,16 +55,16 @@ export function Header() {
                     <Link to="/menus" className="nav-link active" aria-current="page">
                       Menus
                     </Link>
-                    <Link to="/login" className="nav-link active" aria-current="page">
-                      Login
+                    <Link to="/account" className="nav-link active" aria-current="page">
+                      Account
                     </Link>
                     <Logout>Logout</Logout>
                   </li>
-                  <li className="nav-item">
+                  {/* <li className="nav-item">
                     <a className="nav-link" href="/logout">
                       Logout
                     </a>
-                  </li>
+                  </li> */}
                   <li className="nav-item dropdown">
                     <a
                       className="nav-link dropdown-toggle"

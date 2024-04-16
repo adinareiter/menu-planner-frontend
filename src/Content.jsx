@@ -12,6 +12,7 @@ import { NewModal } from "./NewModal";
 import { Signup } from "./Signup";
 import { Login } from "./Login";
 import { Logout } from "./Logout";
+import { Account } from "./Account";
 
 export function Content() {
   //Recipes:
@@ -127,12 +128,25 @@ export function Content() {
   //   setIsMenusShowVisible(false);
   // };
 
+  // users
+  const [currentUser, setCurrentUser] = useState([]);
+  const handleCurrentUser = () => {
+    console.log("handleCurrentUser");
+    axios.get("http://localhost:3000/user.json").then((response) => {
+      console.log(response.data);
+      setCurrentUser(response.data);
+    });
+  };
+
+  useEffect(handleCurrentUser, []);
+
   return (
     <div className="container">
       <Routes>
         <Route path="/" element={<Home />} />
+        <Route path="/account" element={<Account currentUser={currentUser} />} />
         <Route path="/signup" element={<Signup />} />
-        <Route path="/login" element={<Login />} />
+        <Route path="/login" element={<Login currentUser={currentUser} />} />
         <Route path="/logout" element={<Logout />} />
         <Route
           path="/recipes"

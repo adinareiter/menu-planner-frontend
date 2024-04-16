@@ -10,8 +10,8 @@ export function Logout() {
 
   return (
     // {props.user}
-    <a href="#" onClick={handleClick}>
+    <button className="btn btn-outline-light" onClick={handleClick}>
       Logout
-    </a>
+    </button>
   );
 }
