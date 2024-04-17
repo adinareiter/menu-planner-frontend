@@ -7,23 +7,23 @@ export function MenusShow(props) {
   const params = useParams();
   const [eventMenu, setEventMenu] = useState({});
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    const params = new FormData(event.target);
-    props.onCreateEvent(params);
-    event.target.reset();
-    // window.location.href = "/menus";
-  };
+  // const handleSubmit = (event) => {
+  //   event.preventDefault();
+  //   const params = new FormData(event.target);
+  //   props.onCreateEvent(params);
+  //   event.target.reset();
+  //   // window.location.href = "/menus";
+  // };
 
-  const handleEdit = (event) => {
-    event.preventDefault();
-    const params = new FormData(event.target);
-    props.onUpdateEvent(props.event.id, params, () => event.target.reset());
-  };
+  // const handleEdit = (event) => {
+  //   event.preventDefault();
+  //   const params = new FormData(event.target);
+  //   props.onUpdateEvent(props.event.id, params, () => event.target.reset());
+  // };
 
-  const handleClick = () => {
-    props.onDestroyEvent(props.event);
-  };
+  // const handleClick = () => {
+  //   props.onDestroyEvent(props.event);
+  // };
 
   useEffect(() => {
     axios
@@ -60,7 +60,7 @@ export function MenusShow(props) {
           ))}
         </div>
       ) : (
-        <div>No data available</div>
+        <div>Add recipes!</div>
       )}
     </div>
   );

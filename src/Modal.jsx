@@ -1,7 +1,7 @@
 import "./Modal.css";
 
 export function Modal(props) {
-  if (props.show) {
+  if (props.showRecipe) {
     return (
       <div className="modal-background">
         <section className="modal-main">

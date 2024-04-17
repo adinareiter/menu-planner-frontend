@@ -13,6 +13,8 @@ import { Signup } from "./Signup";
 import { Login } from "./Login";
 import { Logout } from "./Logout";
 import { Account } from "./Account";
+import { EventsNew } from "./EventsNew";
+import { EventFormModal } from "./EventFormModal";
 
 export function Content() {
   //Recipes:
@@ -79,14 +81,26 @@ export function Content() {
 
   // Events
   const [events, setEvents] = useState([]);
-  const [isEventsNewVisible, setIsEventsNewVisible] = useState(false);
+  const [eventsNewVisible, setEventsNewVisible] = useState(false);
+  const [currentEvent, setCurrentEvent] = useState({});
 
   const handleIndexEvents = () => {
     console.log("handleIndexEvents");
     axios.get("http://localhost:3000/events.json").then((response) => {
       console.log(response.data);
-      setEvents(response.data);
+      let data = response.data.reverse();
+      setEvents(data);
     });
+  };
+
+  const handleShowEventsNew = (event) => {
+    console.log("handleShowEventsNew", event);
+    setEventsNewVisible(true);
+  };
+
+  const handleCloseEventsNew = () => {
+    console.log("handleCloseEventsNew");
+    setEventsNewVisible(false);
   };
 
   const handleCreateEvent = (params, successCallback) => {
@@ -198,21 +212,13 @@ export function Content() {
           }
         />
         <Route path="/recipes/new" element={<RecipesNew onCreateRecipe={handleCreateRecipe} />} />
-        <Route path="/menus" element={<MenusIndex eventMenus={events} onShowMenu={handleShowMenu} />} />
         <Route
-          path="/menus/:menuId"
-          element={
-            <MenusShow
-              menu={currentMenu}
-              onShowRecipe={handleShowRecipe}
-              onCreateEvent={handleCreateEvent}
-              onUpdateEvent={handleUpdateEvent}
-              onDestroyEvent={handleDestroyEvent}
-            />
-          }
+          path="/menus"
+          element={<MenusIndex onShowEventsNew={handleShowEventsNew} eventMenus={events} onShowMenu={handleShowMenu} />}
         />
+        <Route path="/menus/:menuId" element={<MenusShow menu={currentMenu} onShowRecipe={handleShowRecipe} />} />
       </Routes>
-      <Modal show={isRecipesShowVisible} onClose={handleClose}>
+      <Modal showRecipe={isRecipesShowVisible} onClose={handleClose}>
         <RecipesShow
           recipe={currentRecipe}
           onUpdateRecipe={handleUpdateRecipe}
@@ -220,6 +226,13 @@ export function Content() {
           events={events}
         />
       </Modal>
+      <EventFormModal showEventsNew={eventsNewVisible} onCloseEventsNew={handleCloseEventsNew}>
+        <EventsNew
+          onCreateEvent={handleCreateEvent}
+          onUpdateEvent={handleUpdateEvent}
+          onDestroyEvent={handleDestroyEvent}
+        />
+      </EventFormModal>
       {/* <Modal show={isMenusShowVisible} onClose={handleMenuClose}>
         <MenusShow menu={currentMenu} />
       </Modal> */}

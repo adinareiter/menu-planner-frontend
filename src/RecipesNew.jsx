@@ -14,13 +14,7 @@ export function RecipesNew(props) {
       <div>
         <h3>New Recipe</h3>
         <Link to="/recipes" id="x">
-          <button
-            type="button"
-            className="btn-close"
-            data-bs-dismiss="modal"
-            // style={{ position: "absolute", top: "100px", right: "100px" }}
-            aria-label="Close"
-          ></button>
+          <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </Link>
       </div>
       <form onSubmit={handleSubmit}>

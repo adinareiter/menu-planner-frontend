@@ -33,6 +33,7 @@ export function NewModal(props) {
   // connecting Add Menu button to event index
   const toggleMenuButton = () => {
     setEventIndex(!eventIndex);
+    setEventReal({});
   };
 
   // Menu create action
@@ -157,6 +158,7 @@ export function NewModal(props) {
                   <div>
                     <h5
                       onClick={toggleMenuButton}
+                      // event.target.reset();
                       // type="button"
                       // className="btn btn-outline-dark"
                     >
@@ -164,7 +166,7 @@ export function NewModal(props) {
                       <i id="arrow" type="button" className="bi bi-caret-down-fill btn btn-outline-dark"></i>
                     </h5>
                     {eventIndex === true ? (
-                      <>
+                      <form id="radio">
                         {props.events.map((event) => (
                           <div className="form-check" key={event.id}>
                             <input
@@ -172,9 +174,7 @@ export function NewModal(props) {
                               type="radio"
                               value={event.id}
                               name="selectedEvent"
-                              name="flexRadioDefault"
-                              id="flexRadioDefault1"
-                              checked={eventReal.id === event.id}
+                              checked={eventReal.id === event?.id}
                               onChange={() => setEventReal(event)}
                             />
                             <label className="form-check-label">{event.title}</label>
@@ -183,7 +183,7 @@ export function NewModal(props) {
                         <button onClick={handleCreateMenu} className="btn btn-outline-dark" id="event-save">
                           Save
                         </button>
-                      </>
+                      </form>
                     ) : (
                       <></>
                     )}

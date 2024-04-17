@@ -2,7 +2,12 @@ import { Link } from "react-router-dom";
 export function MenusIndex(props) {
   return (
     <div id="menus-index">
-      <h1>Menus</h1>
+      <h1>
+        Menus
+        <button id="add-button" type="button" className="btn btn-dark" onClick={props.onShowEventsNew}>
+          +
+        </button>
+      </h1>
       <div
         className="row row-cols-1
       row-cols-md-2 g-4"

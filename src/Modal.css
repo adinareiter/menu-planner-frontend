@@ -1,3 +1,4 @@
+/* recipeModal */
 .modal-background {
   display: block;
   position: fixed;
@@ -22,6 +23,28 @@
 }
 
 .modal-main button.close {
+  font-size: 2em;
+  background: none;
+  border: none;
+  position: fixed;
+  top: 0em;
+  right: 0.2em;
+}
+
+/* eventNewModal */
+.modal-main-events {
+  position: fixed;
+  background: white;
+  width: 80%;
+  height: 300px;
+  overflow-y: scroll;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+  padding: 1em;
+}
+
+.modal-main-events button.close {
   font-size: 2em;
   background: none;
   border: none;

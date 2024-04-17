@@ -25,30 +25,30 @@ export function RecipesIndex(props) {
         className="row row-cols-1
           row-cols-md-2 row-cols-lg-3 g-4"
       >
-        {/* {props.recipes && props.recipes.length > 0 ? ( */}
-
-        {props.recipes.map((recipe) => (
-          <div key={recipe.id}>
-            <div className="card">
-              <h5 className="text-bg-dark p-2">{recipe.title}</h5>
-              <img src={recipe.image} alt={recipe.title} />
-              {/* <button onClick={() => props.onShowRecipe(recipe)} className="btn btn-dark">
+        {props.recipes && props.recipes.length > 0 ? (
+          props.recipes.map((recipe) => (
+            <div key={recipe.id}>
+              <div className="card">
+                <h5 className="text-bg-dark p-2">{recipe.title}</h5>
+                <img src={recipe.image} alt={recipe.title} />
+                {/* <button onClick={() => props.onShowRecipe(recipe)} className="btn btn-dark">
             Quick View
           </button> */}
-              <button
-                onClick={() => props.setCurrentRecipe(recipe)}
-                type="button"
-                className="btn btn-dark"
-                data-bs-toggle="modal"
-                data-bs-target="#staticBackdrop"
-              >
-                View
-              </button>
+                <button
+                  onClick={() => props.setCurrentRecipe(recipe)}
+                  type="button"
+                  className="btn btn-dark"
+                  data-bs-toggle="modal"
+                  data-bs-target="#staticBackdrop"
+                >
+                  View
+                </button>
+              </div>
             </div>
-          </div>
-        ))}
-        {/* ) : (<p>Create a recipe!</p>)
-      }  */}
+          ))
+        ) : (
+          <p>Create a recipe!</p>
+        )}
       </div>
     </div>
   );
