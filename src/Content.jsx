@@ -77,13 +77,49 @@ export function Content() {
 
   useEffect(handleIndexRecipes, []);
 
-  // EventsIndex function
+  // Events
   const [events, setEvents] = useState([]);
+  const [isEventsNewVisible, setIsEventsNewVisible] = useState(false);
+
   const handleIndexEvents = () => {
     console.log("handleIndexEvents");
     axios.get("http://localhost:3000/events.json").then((response) => {
       console.log(response.data);
       setEvents(response.data);
+    });
+  };
+
+  const handleCreateEvent = (params, successCallback) => {
+    console.log("handleCreateEvent", params);
+    axios.post("http://localhost:3000/events.json", params).then((response) => {
+      setRecipes([...recipes, response.data]);
+      successCallback;
+    });
+  };
+
+  const handleUpdateEvent = (id, params, successCallback) => {
+    console.log("handleUpdateEvent", params);
+    axios.patch(`http://localhost:3000/events/${id}.json`, params).then((response) => {
+      setCurrentEvent(response.data);
+      setEvents(
+        events.map((event) => {
+          if (event.id === response.data.id) {
+            return response.data;
+          } else {
+            return event;
+          }
+        })
+      );
+      successCallback();
+      handleClose();
+    });
+  };
+
+  const handleDestroyEvent = (event) => {
+    console.log("handleDestroyEvent", event);
+    axios.delete(`http://localhost:3000/events/${event.id}.json`).then((response) => {
+      setRecipes(events.filter((e) => e.id !== event.id));
+      handleClose();
     });
   };
 
@@ -163,7 +199,18 @@ export function Content() {
         />
         <Route path="/recipes/new" element={<RecipesNew onCreateRecipe={handleCreateRecipe} />} />
         <Route path="/menus" element={<MenusIndex eventMenus={events} onShowMenu={handleShowMenu} />} />
-        <Route path="/menus/:menuId" element={<MenusShow menu={currentMenu} onShowRecipe={handleShowRecipe} />} />
+        <Route
+          path="/menus/:menuId"
+          element={
+            <MenusShow
+              menu={currentMenu}
+              onShowRecipe={handleShowRecipe}
+              onCreateEvent={handleCreateEvent}
+              onUpdateEvent={handleUpdateEvent}
+              onDestroyEvent={handleDestroyEvent}
+            />
+          }
+        />
       </Routes>
       <Modal show={isRecipesShowVisible} onClose={handleClose}>
         <RecipesShow

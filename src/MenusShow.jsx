@@ -7,6 +7,24 @@ export function MenusShow(props) {
   const params = useParams();
   const [eventMenu, setEventMenu] = useState({});
 
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    const params = new FormData(event.target);
+    props.onCreateEvent(params);
+    event.target.reset();
+    // window.location.href = "/menus";
+  };
+
+  const handleEdit = (event) => {
+    event.preventDefault();
+    const params = new FormData(event.target);
+    props.onUpdateEvent(props.event.id, params, () => event.target.reset());
+  };
+
+  const handleClick = () => {
+    props.onDestroyEvent(props.event);
+  };
+
   useEffect(() => {
     axios
       .get(`http://localhost:3000/events/${params.menuId}.json`)
