@@ -7,30 +7,11 @@ export function MenusShow(props) {
   const params = useParams();
   const [eventMenu, setEventMenu] = useState({});
 
-  // const handleSubmit = (event) => {
-  //   event.preventDefault();
-  //   const params = new FormData(event.target);
-  //   props.onCreateEvent(params);
-  //   event.target.reset();
-  //   // window.location.href = "/menus";
-  // };
-
-  // const handleEdit = (event) => {
-  //   event.preventDefault();
-  //   const params = new FormData(event.target);
-  //   props.onUpdateEvent(props.event.id, params, () => event.target.reset());
-  // };
-
-  // const handleClick = () => {
-  //   props.onDestroyEvent(props.event);
-  // };
-
   useEffect(() => {
     axios
       .get(`http://localhost:3000/events/${params.menuId}.json`)
       .then((response) => {
         setEventMenu(response.data);
-        console.log("Fetched event:", response.data.recipes, response.data.recipes.length);
       })
       .catch((error) => {
         console.error("Error fetching event data:", error);
@@ -40,7 +21,6 @@ export function MenusShow(props) {
 
   return (
     <div id="menus-show">
-      {/* <div></div> */}
       <h1>{eventMenu.title}</h1>
       {eventMenu && eventMenu.recipes && eventMenu.recipes.length > 0 ? (
         <div

@@ -2,23 +2,18 @@ import { useState } from "react";
 import axios from "axios";
 
 export function NewModal(props) {
-  console.log("recipe", props);
-
   //editable form is invisible
   const [isEditable, setIsEditable] = useState(false);
 
   //opens editable form
   const handleEdit = () => {
     setIsEditable(true);
-    console.log("test");
   };
 
   const handleSubmit = (event) => {
     event.preventDefault();
     const params = new FormData(event.target);
     props.onUpdateRecipe(props.recipe.id, params, () => event.target.reset());
-    // want to refresh modal to update recipe automatically:
-    // window.location.href = "/recipes";
     setIsEditable();
   };
 
@@ -42,26 +37,22 @@ export function NewModal(props) {
   const [menu, setMenu] = useState({});
   const handleCreateMenu = (params) => {
     event.preventDefault;
-    console.log("event", eventReal);
-    console.log("handleCreateMenu", params);
     const data = {
       recipe_id: props.recipe.id,
       event_id: eventReal.id,
     };
-    console.log(data);
     axios
       .post("http://localhost:3000/menus.json", data)
-      .then((response) => {
-        console.log(response.data);
-        console.log(menu);
-      })
+      .then((response) => {})
       .catch((error) => {
         console.error("Error creating menu", error);
       });
     window.location.href = `/menus/${eventReal.id}`;
+    // window.location.href = `/menus`;
   };
 
   const [confirmDeletion, setConfirmDeletion] = useState(false);
+
   return (
     <div>
       <div
@@ -174,7 +165,7 @@ export function NewModal(props) {
                               type="radio"
                               value={event.id}
                               name="selectedEvent"
-                              checked={eventReal.id === event?.id}
+                              checked={eventReal.id === event.id}
                               onChange={() => setEventReal(event)}
                             />
                             <label className="form-check-label">{event.title}</label>

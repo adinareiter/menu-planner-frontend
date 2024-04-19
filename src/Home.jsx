@@ -1,7 +1,6 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import Typewriter from "./Typewriter";
 import { Link } from "react-router-dom";
-// import { Login } from "./Login";
 
 export function Home() {
   const jwt = localStorage.getItem("jwt");

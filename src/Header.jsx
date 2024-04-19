@@ -28,7 +28,7 @@ export function Header() {
             </button>
             <div
               className="offcanvas offcanvas-end text-bg-dark"
-              tabindex="-1"
+              // tabindex="-1"
               id="offcanvasDarkNavbar"
               aria-labelledby="offcanvasDarkNavbarLabel"
             >

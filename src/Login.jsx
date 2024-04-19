@@ -1,6 +1,5 @@
 import axios from "axios";
 import { useState } from "react";
-import { Account } from "./Account";
 import { Link } from "react-router-dom";
 
 const jwt = localStorage.getItem("jwt");
@@ -18,32 +17,23 @@ export function Login() {
     axios
       .post("http://localhost:3000/sessions.json", params)
       .then((response) => {
-        console.log(response.data);
         axios.defaults.headers.common["Authorization"] = "Bearer " + response.data.jwt;
         localStorage.setItem("jwt", response.data.jwt);
         event.target.reset();
-        window.location.href = "/"; // Change this to hide a modal, redirect to a specific page, etc.
+        window.location.href = "/";
       })
       .catch((error) => {
-        console.log(error.response);
         setErrors(["Invalid email or password"]);
       });
   };
 
   return (
     <div>
-      {/* {jwt ? (
-        // <Account />
-        <p>You're signed in!</p>
-      ) : ( */}
       <section id="login" className="vh-100 gradient-custom">
         <div className="container py-5 h-100">
           <div className="row d-flex justify-content-center align-items-center h-100">
             <div className="col-12 col-md-8 col-lg-6 col-xl-5">
-              <div
-                className="card bg-dark text-white"
-                // style="border-radius: 1rem;"
-              >
+              <div className="card bg-dark text-white">
                 <div className="card-body p-5 text-center">
                   <div className="mb-md-5 mt-md-4 pb-5">
                     <h2 className="fw-bold mb-2 text-uppercase">Login</h2>
@@ -117,7 +107,6 @@ export function Login() {
           </div>
         </div>
       </section>
-      {/* )} */}
     </div>
   );
 }

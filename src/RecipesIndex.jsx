@@ -1,6 +1,4 @@
-// import { useState } from "react";
 import { Link } from "react-router-dom";
-// import { NewModal } from "./NewModal";
 
 export function RecipesIndex(props) {
   return (
@@ -31,9 +29,6 @@ export function RecipesIndex(props) {
               <div className="card">
                 <h5 className="text-bg-dark p-2">{recipe.title}</h5>
                 <img src={recipe.image} alt={recipe.title} />
-                {/* <button onClick={() => props.onShowRecipe(recipe)} className="btn btn-dark">
-            Quick View
-          </button> */}
                 <button
                   onClick={() => props.setCurrentRecipe(recipe)}
                   type="button"

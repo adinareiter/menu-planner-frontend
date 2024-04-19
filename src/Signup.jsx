@@ -12,29 +12,21 @@ export function Signup() {
     axios
       .post("http://localhost:3000/users.json", params)
       .then((response) => {
-        console.log(response.data);
         event.target.reset();
-        window.location.href = "/"; // Change this to hide a modal, redirect to a specific page, etc.
+        window.location.href = "/";
       })
       .catch((error) => {
-        console.log(error.response.data.errors);
         setErrors(error.response.data.errors);
       });
   };
 
   return (
     <div id="signup">
-      <section
-        className="vh-100"
-        // style="background-color: #eee;"
-      >
+      <section className="vh-100">
         <div className="container h-100">
           <div className="row d-flex justify-content-center align-items-center h-100">
             <div className="col-lg-12 col-xl-11">
-              <div
-                className="card text-black"
-                // style="border-radius: 25px;"
-              >
+              <div className="card text-black">
                 <div className="card-body p-md-5">
                   <div className="row justify-content-center">
                     <div className="col-md-10 col-lg-6 col-xl-5 order-2 order-lg-1">
@@ -90,13 +82,6 @@ export function Signup() {
                           </div>
                         </div>
 
-                        {/* <div className="form-check d-flex justify-content-center mb-5">
-                          <input className="form-check-input me-2" type="checkbox" value="" id="form2Example3c" />
-                          <label className="form-check-label" for="form2Example3">
-                            I agree all statements in <a href="#!">Terms of service</a>
-                          </label>
-                        </div> */}
-
                         <div className="d-flex justify-content-center mx-4 mb-3 mb-lg-4">
                           <button
                             type="submit"
@@ -133,27 +118,4 @@ export function Signup() {
       </section>
     </div>
   );
-}
-{
-  /* <h1>Signup</h1>
-<ul>
-  {errors.map((error) => (
-    <li key={error}>{error}</li>
-  ))}
-</ul>
-<form onSubmit={handleSubmit}>
-  <div>
-    Name: <input name="name" type="text" />
-  </div>
-  <div>
-    Email: <input name="email" type="email" />
-  </div>
-  <div>
-    Password: <input name="password" type="password" />
-  </div>
-  <div>
-    Password confirmation: <input name="password_confirmation" type="password" />
-  </div>
-  <button type="submit">Signup</button>
-</form> */
 }

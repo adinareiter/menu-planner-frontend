@@ -1,10 +1,7 @@
-/* eslint-disable react/prop-types */
 import axios from "axios";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 
 export function RecipesShow(props) {
-  console.log("recipe", props.recipe);
-
   const handleSubmit = (event) => {
     event.preventDefault();
     const params = new FormData(event.target);
@@ -28,19 +25,13 @@ export function RecipesShow(props) {
 
   const [menu, setMenu] = useState({});
   const handleCreateMenu = (params) => {
-    console.log("event", eventReal);
-    console.log("handleCreateMenu", params);
     const data = {
       recipe_id: props.recipe.id,
       event_id: eventReal.id,
     };
-    console.log(data);
     axios
       .post("http://localhost:3000/menus.json", data)
-      .then((response) => {
-        console.log(response.data);
-        console.log(menu);
-      })
+      .then((response) => {})
       .catch((error) => {
         console.error("Error creating menu", error);
       });
@@ -63,7 +54,6 @@ export function RecipesShow(props) {
         ))}
       </ol>
       <p>Time: {props.recipe.time}</p>
-      {/* <img src={props.recipe.image} /> */}
       <form onSubmit={handleSubmit}>
         <div>
           Title: <input defaultValue={props.recipe.title} name="title" type="text" placeholder="title" />

@@ -9,7 +9,6 @@ export function Logout() {
   };
 
   return (
-    // {props.user}
     <button className="btn btn-outline-light" onClick={handleClick}>
       Logout
     </button>

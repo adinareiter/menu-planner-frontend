@@ -23,36 +23,36 @@ export function Content() {
   const [currentRecipe, setCurrentRecipe] = useState({});
 
   const handleIndexRecipes = () => {
-    console.log("handleIndexRecipes");
     axios.get("http://localhost:3000/recipes.json").then((response) => {
-      console.log(response.data);
       let data = response.data.reverse();
-      // let data = response.data.sort((a, b) => a.created_at - b.created_at);
       setRecipes(data);
     });
   };
 
+  // const [errors, setErrors] = useState([]);
+
   const handleCreateRecipe = (params, successCallback) => {
-    console.log("handleCreateRecipe", params);
+    // setErrors([]);
     axios.post("http://localhost:3000/recipes.json", params).then((response) => {
       setRecipes([...recipes, response.data]);
       successCallback;
     });
+    // .catch((error) => {
+    //   console.log(error.response.data.errors);
+    //   setErrors(error.response.data.errors);
+    // });
   };
 
   const handleShowRecipe = (recipe) => {
-    console.log("handleShowRecipe", recipe);
     setIsRecipesShowVisible(true);
     setCurrentRecipe(recipe);
   };
 
   const handleClose = () => {
-    console.log("handleClose");
     setIsRecipesShowVisible(false);
   };
 
   const handleUpdateRecipe = (id, params, successCallback) => {
-    console.log("handleUpdateRecipe", params);
     axios.patch(`http://localhost:3000/recipes/${id}.json`, params).then((response) => {
       setCurrentRecipe(response.data);
       setRecipes(
@@ -70,7 +70,6 @@ export function Content() {
   };
 
   const handleDestroyRecipe = (recipe) => {
-    console.log("handleDestroyRecipe", recipe);
     axios.delete(`http://localhost:3000/recipes/${recipe.id}.json`).then((response) => {
       setRecipes(recipes.filter((r) => r.id !== recipe.id));
       handleClose();
@@ -85,26 +84,21 @@ export function Content() {
   const [currentEvent, setCurrentEvent] = useState({});
 
   const handleIndexEvents = () => {
-    console.log("handleIndexEvents");
     axios.get("http://localhost:3000/events.json").then((response) => {
-      console.log(response.data);
       let data = response.data.reverse();
       setEvents(data);
     });
   };
 
   const handleShowEventsNew = (event) => {
-    console.log("handleShowEventsNew", event);
     setEventsNewVisible(true);
   };
 
   const handleCloseEventsNew = () => {
-    console.log("handleCloseEventsNew");
     setEventsNewVisible(false);
   };
 
   const handleCreateEvent = (params, successCallback) => {
-    console.log("handleCreateEvent", params);
     axios.post("http://localhost:3000/events.json", params).then((response) => {
       setRecipes([...recipes, response.data]);
       successCallback;
@@ -112,7 +106,6 @@ export function Content() {
   };
 
   const handleUpdateEvent = (id, params, successCallback) => {
-    console.log("handleUpdateEvent", params);
     axios.patch(`http://localhost:3000/events/${id}.json`, params).then((response) => {
       setCurrentEvent(response.data);
       setEvents(
@@ -130,7 +123,6 @@ export function Content() {
   };
 
   const handleDestroyEvent = (event) => {
-    console.log("handleDestroyEvent", event);
     axios.delete(`http://localhost:3000/events/${event.id}.json`).then((response) => {
       setRecipes(events.filter((e) => e.id !== event.id));
       handleClose();
@@ -141,49 +133,24 @@ export function Content() {
 
   // MenusIndex function
   const handleIndexMenus = () => {
-    console.log("handleIndexMenus");
     axios.get("http://localhost:3000/menus.json").then((response) => {
-      console.log(response.data);
       setMenus(response.data);
     });
   };
   useEffect(handleIndexMenus, []);
-  // useEffect(() => {
-  //   handleIndexMenus();
-  // }, []);
 
   // MenusShow function
   const [menus, setMenus] = useState([]);
-  // const [isMenusShowVisible, setIsMenusShowVisible] = useState(false);
   const [currentMenu, setCurrentMenu] = useState({});
 
   const handleShowMenu = (menu) => {
-    console.log("handleShowMenu", menu);
-    // setIsMenusShowVisible(true);
     setCurrentMenu(menu);
   };
-
-  //Menus Modal
-  // const [isMenusShowVisible, setIsMenusShowVisible] = useState(false);
-  // const [currentMenu, setCurrentMenu] = useState({});
-
-  // const handleShowMenu = (menu) => {
-  //   console.log("handleShowMenu", menu);
-  //   setIsMenusShowVisible(true);
-  //   setCurrentMenu(menu);
-  // };
-
-  // const handleMenuClose = () => {
-  //   console.log("handleClose");
-  //   setIsMenusShowVisible(false);
-  // };
 
   // users
   const [currentUser, setCurrentUser] = useState([]);
   const handleCurrentUser = () => {
-    console.log("handleCurrentUser");
     axios.get("http://localhost:3000/user.json").then((response) => {
-      console.log(response.data);
       setCurrentUser(response.data);
     });
   };
@@ -233,9 +200,6 @@ export function Content() {
           onDestroyEvent={handleDestroyEvent}
         />
       </EventFormModal>
-      {/* <Modal show={isMenusShowVisible} onClose={handleMenuClose}>
-        <MenusShow menu={currentMenu} />
-      </Modal> */}
       <NewModal
         recipe={currentRecipe}
         events={events}
